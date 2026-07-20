@@ -5,8 +5,8 @@ on:
   # positive and is being rebuilt to check specific date columns
   # instead of "any price/checkmark on the page". Re-enable the
   # `schedule:` block below once verified.
-  # schedule:
-  #   - cron: '*/5 * * * *'
+   schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch: {} # lets you trigger it manually from the Actions tab
 
 jobs:
