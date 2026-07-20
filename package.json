@@ -1,0 +1,16 @@
+{
+  "name": "room-watcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Checks a hotel booking page every few minutes and alerts on Telegram when a target room type becomes available.",
+  "scripts": {
+    "check": "node check-room.js",
+    "check:debug": "cross-env DEBUG=1 node check-room.js"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
