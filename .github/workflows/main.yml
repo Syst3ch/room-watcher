@@ -1,10 +1,12 @@
 name: Check Room Availability
 
 on:
-  schedule:
-    # Runs every 5 minutes. GitHub does not guarantee exact timing —
-    # under load it can slip by a few minutes.
-    - cron: '*/5 * * * *'
+  # ⚠️ Schedule temporarily disabled — detection logic gave a false
+  # positive and is being rebuilt to check specific date columns
+  # instead of "any price/checkmark on the page". Re-enable the
+  # `schedule:` block below once verified.
+  # schedule:
+  #   - cron: '*/5 * * * *'
   workflow_dispatch: {} # lets you trigger it manually from the Actions tab
 
 jobs:
@@ -39,5 +41,6 @@ jobs:
           path: |
             debug-screenshot.png
             debug-page-text.txt
+            debug-availability.json
           retention-days: 3
           if-no-files-found: ignore
