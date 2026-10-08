@@ -128,8 +128,15 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
   border:1px solid var(--gold-dim);
 }
 .shoe span{font-size:10px;color:var(--muted)}
-.discard{position:absolute;top:14px;right:14px;font-size:10px;color:var(--muted);letter-spacing:.08em;text-align:center;line-height:1.4;max-width:90px}
-.discard b{display:block;font-family:var(--f-display);font-weight:400;font-size:14px;color:var(--gold)}
+.limits{
+  position:absolute;top:14px;right:14px;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:7px 12px;border-radius:6px;background:linear-gradient(180deg,#1f1215,#0b0607);
+  border:1px solid var(--gold-dim);box-shadow:inset 0 0 0 3px #0b0607,inset 0 0 0 4px rgba(230,195,111,.35),0 6px 14px rgba(0,0,0,.45);
+  direction:ltr;text-align:center;line-height:1.2;
+}
+.limits span{font-size:8.5px;letter-spacing:.22em;color:var(--muted)}
+.limits b{font-family:var(--f-logo);font-weight:400;font-size:15px;color:var(--gold);letter-spacing:.04em}
+.limits small{font-size:9px;color:var(--muted);letter-spacing:.06em}
 
 .zone{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
 .zone-label{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;color:var(--muted)}
@@ -197,7 +204,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
 .hand-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
 .hand-meta .hb{direction:ltr}
 .result{
-  font-family:var(--f-display);font-size:13px;padding:3px 10px;border-radius:999px;
+  font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.16em;padding:4px 11px;border-radius:4px;direction:ltr;
   animation:pop .35s cubic-bezier(.3,1.6,.5,1);
 }
 .result.win{background:rgba(140,227,168,.16);color:var(--win);border:1px solid rgba(140,227,168,.5)}
@@ -243,7 +250,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
 }
 .spot .tag{
   position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-size:11px;padding:3px 8px;border-radius:8px;direction:ltr;animation:pop .35s cubic-bezier(.3,1.6,.5,1);
+  font-size:10px;font-weight:700;letter-spacing:.12em;padding:3px 8px;border-radius:4px;direction:ltr;animation:pop .35s cubic-bezier(.3,1.6,.5,1);
 }
 .spot .tag.win{background:var(--gold);color:var(--ink);font-weight:700;box-shadow:0 0 18px rgba(230,195,111,.6)}
 .spot .tag.lose{background:rgba(0,0,0,.5);color:var(--muted)}
@@ -275,9 +282,9 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
   box-shadow:0 20px 50px rgba(0,0,0,.6);pointer-events:none;text-align:center;
   animation:toastIn .45s cubic-bezier(.2,1.4,.4,1);
 }
-.toast .t1{font-family:var(--f-display);font-size:clamp(22px,4vw,34px);color:var(--gold-hi)}
+.toast .t1{font-family:var(--f-logo);font-size:clamp(20px,3.6vw,30px);letter-spacing:.12em;text-transform:uppercase;color:var(--gold-hi);direction:ltr}
 .toast .t2{font-family:var(--f-display);font-size:clamp(26px,5vw,44px);direction:ltr}
-.toast .t3{font-size:12px;color:var(--muted);max-width:280px}
+.toast .t3{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);max-width:280px}
 .toast.win .t2{color:var(--win);text-shadow:0 0 24px rgba(140,227,168,.5)}
 .toast.bj .t1{background:linear-gradient(180deg,var(--gold-hi),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .toast.bj .t2{color:var(--gold-hi);text-shadow:0 0 28px rgba(230,195,111,.7)}
@@ -355,7 +362,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
 
 @media (max-width:620px){
   .table{min-height:470px;border-radius:22px 22px 44% 44% / 22px 22px 10% 10%}
-  .discard{display:none}
+  .limits{display:none}
   .act{padding:11px 14px;min-width:78px;font-size:16px}
   .act kbd,.rack .chip kbd{display:none}
   .stat{min-width:84px;padding:5px 10px}
@@ -381,10 +388,10 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
 
   <main class="table" id="table">
     <div class="shoe" id="shoe" aria-hidden="true"><span class="num" id="shoeCount">312</span></div>
-    <div class="discard" aria-hidden="true"><b>6</b>חפיסות בשו</div>
+    <div class="limits" aria-label="Table limits"><span>TABLE LIMITS</span><b class="num">$5 – $5,000</b><small class="num">Side bets to $1,000</small></div>
 
     <section class="zone dealer" aria-label="הדילר">
-      <div class="zone-label">דילר <span class="total" id="dealerTotal" hidden></span></div>
+      <div class="zone-label">DEALER <span class="total" id="dealerTotal" hidden></span></div>
       <div class="cards" id="dealerCards"></div>
     </section>
 
@@ -403,17 +410,17 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
       <div class="spot side" data-spot="pp" role="button" tabindex="0" aria-label="Perfect Pairs">
         <div class="empty"><b>Perfect<br>Pairs</b><small>עד 25:1</small></div>
         <div class="stack"></div>
-        <span class="name">סייד בט</span>
+        <span class="name">SIDE BET</span>
       </div>
       <div class="spot main" data-spot="main" role="button" tabindex="0" aria-label="הימור ראשי">
-        <div class="empty"><b>הימור<br>ראשי</b><small>BJ 3:2</small></div>
+        <div class="empty"><b>BET</b><small>הימור ראשי</small></div>
         <div class="stack"></div>
-        <span class="name">מינימום $5</span>
+        <span class="name">MIN $5</span>
       </div>
       <div class="spot side" data-spot="t3" role="button" tabindex="0" aria-label="21+3">
         <div class="empty"><b>21+3</b><small>עד 100:1</small></div>
         <div class="stack"></div>
-        <span class="name">סייד בט</span>
+        <span class="name">SIDE BET</span>
       </div>
     </div>
 
@@ -659,7 +666,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
       box.append(w);
     }
   }
-  const RESULT = {win: 'ניצחון', lose: 'הפסד', push: 'תיקו', bust: 'באסט', bj: "בלאק ג'ק"};
+  const RESULT = {win: 'WIN', lose: 'LOSE', push: 'PUSH', bust: 'BUST', bj: 'BLACKJACK'};
   function updateHands() {
     S.hands.forEach((h, i) => {
       if (!h.el) return;
@@ -683,7 +690,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
     el.hidden = !shown.length;
     if (!shown.length) return;
     const {t} = total(shown);
-    el.textContent = !S.holeHidden && isBJ(S.dealer) ? 'BJ' : (t > 21 ? `${t} באסט` : totalLabel(shown));
+    el.textContent = !S.holeHidden && isBJ(S.dealer) ? 'BJ' : (t > 21 ? `BUST ${t}` : totalLabel(shown));
     el.classList.toggle('bust', t > 21);
     el.classList.toggle('bj', !S.holeHidden && isBJ(S.dealer));
   }
@@ -904,7 +911,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
     hideToast();
     if (S.shoe.length < DECKS * 52 * 0.25) {
       buildShoe();
-      showToast('מערבבים', '', 'שו חדש של 6 חפיסות', 'info');
+      showToast('Shuffling', '', '6-deck shoe', 'info');
       updateUI();
       await wait(900);
       hideToast();
@@ -947,7 +954,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
         won = true;
         burst(document.querySelector(`.spot[data-spot="${k}"]`), 26 + Math.min(60, r.mult * 2));
       } else {
-        S.sideRes[k] = {win: false, text: k === 'pp' ? 'אין זוג' : 'אין יד'};
+        S.sideRes[k] = {win: false, text: k === 'pp' ? 'NO PAIR' : 'NO HAND'};
       }
     }
     updateUI();
@@ -970,10 +977,10 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
       await revealHole();
       if (S.insurance) pay(S.insurance * 3);
       if (playerBJ) { h.result = 'push'; pay(h.bet); } else h.result = 'lose';
-      return finishRound("לדילר יש בלאק ג'ק");
+      return finishRound('Dealer blackjack');
     }
     let note = '';
-    if (S.insurance) note = "לדילר אין בלאק ג'ק. הביטוח הפסיד.";
+    if (S.insurance) note = "לדילר אין בלאק ג'ק, הביטוח הפסיד.";
     if (playerBJ) {
       await revealHole();
       h.result = 'bj';
@@ -1056,7 +1063,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
       else if (p === d) { h.result = 'push'; pay(h.bet); }
       else h.result = 'lose';
     }
-    finishRound(d > 21 ? 'הדילר עבר 21' : '');
+    finishRound(d > 21 ? 'Dealer busts' : '');
   }
 
   function finishRound(note) {
@@ -1065,11 +1072,11 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
     const bj = S.hands.some(h => h.result === 'bj');
     const sideWins = Object.values(S.sideRes).filter(r => r.win).length;
     let title, kind;
-    if (bj) { title = "בלאק ג'ק!"; kind = 'bj'; }
-    else if (net > 0) { title = 'ניצחת'; kind = 'win'; }
-    else if (net < 0) { title = 'הפסדת'; kind = 'lose'; }
-    else { title = 'תיקו'; kind = 'push'; }
-    const extra = [note, sideWins ? 'כולל זכייה בסייד בט' : ''].filter(Boolean).join(' · ');
+    if (bj) { title = 'Blackjack'; kind = 'bj'; }
+    else if (net > 0) { title = 'You win'; kind = 'win'; }
+    else if (net < 0) { title = 'Dealer wins'; kind = 'lose'; }
+    else { title = 'Push'; kind = 'push'; }
+    const extra = [note, sideWins ? 'Side bet paid' : ''].filter(Boolean).join(' · ');
     showToast(title, net === 0 ? fmt(0) : (net > 0 ? '+' : '') + fmt(net), extra, kind);
     const round = S.stats.hands;
     setTimeout(() => { if (S.stats.hands === round && S.phase === 'betting') hideToast(); }, reduce ? 3500 : 2600);
@@ -1103,7 +1110,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--gold-
     renderHands();
     hideToast();
     $('broke').hidden = true;
-    showToast('משחק חדש', fmt(START), 'בהצלחה', 'push');
+    showToast('New game', fmt(START), '', 'push');
     setTimeout(() => { if (S.phase === 'betting' && !S.hands.length) hideToast(); }, 1600);
     updateUI();
   }
